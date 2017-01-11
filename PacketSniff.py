@@ -39,8 +39,9 @@ def main():
                 try:
                     source_port, destination_port, sequence, acknowledgment, offset, flag_urg, flag_ack, flag_psh, flag_rst, \
                     flag_syn, flag_fin, data = tcp_packet(ip_data)
-                    decoded_data = data.decode('utf-8','strict')
-                    print("Data:{}".format(decoded_data))
+                    if source_port == 8 or destination_port == 8:
+		    	decoded_data = data.decode('utf-8','strict')
+                    	print("Data:{}".format(decoded_data))
                    # input("PRESS ANY KEY TO CONTINUE")
                 except:
                     continue
@@ -48,8 +49,9 @@ def main():
             elif ip_proto == 17:
                 try:
                     source_port, destination_port, size, data = udp_packet(ip_data)
-                    decoded_data = data.decode('utf-8','strict')
-                    print("Data:{} ".format(decoded_data))
+                    if source_port ==8 or destination_port == 8:
+		    	decoded_data = data.decode('utf-8','strict')
+                    	print("Data:{} ".format(decoded_data))
                 except:
                     continue
             else:
